@@ -2,6 +2,7 @@ package com.neki.projetoNeki.model;
 
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -37,11 +39,26 @@ public class Usuario {
 	@Column(name = "last_login_date")
 	private Date lastLoginDate = new Date();
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-	Set<UsuarioSkill> usuarioSkill;
+	private Set<UsuarioSkill> usuarioSkill = new HashSet<>();
+
+	public Usuario() {
+	}
+
+	public Usuario(String login, String senha, Date lastLoginDate) {
+		super();
+		this.login = login;
+		this.senha = senha;
+		this.lastLoginDate = lastLoginDate;
+	}
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLogin() {
@@ -75,4 +92,5 @@ public class Usuario {
 	public void setUsuarioSkill(Set<UsuarioSkill> usuarioSkill) {
 		this.usuarioSkill = usuarioSkill;
 	}
+	
 }

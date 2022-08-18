@@ -6,4 +6,5 @@ import com.neki.projetoNeki.model.Skill;
 
 public interface SkillRepository extends JpaRepository<Skill, Integer> {
 
+
 }

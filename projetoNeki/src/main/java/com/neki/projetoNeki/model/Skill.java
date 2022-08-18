@@ -1,5 +1,6 @@
 package com.neki.projetoNeki.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,34 +12,41 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity(name = "Skill")
+@Entity
 @Table(name = "skill")
 public class Skill {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id_skill", unique = true)
-    private Integer idSkill;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_skill", unique = true)
+	private Integer idSkill;
+
 	@Column(name = "name")
 	private String name;
-	
-	@Column(name = "vercao")
-	private String vercao;
-	
+
+	@Column(name = "versao")
+	private String versao;
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "image_url")
 	private String imageUrl;
 
-	@OneToMany(
-	        mappedBy = "skill",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
-	    private Set<UsuarioSkill> usuarioSkillModel;
-	
+	@OneToMany(mappedBy = "skill", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<UsuarioSkill> usuarioSkill = new HashSet<>();
+
+	public Skill() {
+	}
+
+	public Skill(String name, String versao, String description, String imageUrl) {
+		super();
+		this.name = name;
+		this.versao = versao;
+		this.description = description;
+		this.imageUrl = imageUrl;
+	}
+
 	public Integer getIdSkill() {
 		return idSkill;
 	}
@@ -55,12 +63,12 @@ public class Skill {
 		this.name = name;
 	}
 
-	public String getVercao() {
-		return vercao;
+	public String getVersao() {
+		return versao;
 	}
 
-	public void setVercao(String vercao) {
-		this.vercao = vercao;
+	public void setVersao(String versao) {
+		this.versao = versao;
 	}
 
 	public String getDescription() {
@@ -79,12 +87,12 @@ public class Skill {
 		this.imageUrl = imageUrl;
 	}
 
-	public Set<UsuarioSkill> getUsuarioSkillModel() {
-		return usuarioSkillModel;
+	public Set<UsuarioSkill> getUsuarioSkill() {
+		return usuarioSkill;
 	}
 
-	public void setUsuarioSkillModel(Set<UsuarioSkill> usuarioSkillModel) {
-		this.usuarioSkillModel = usuarioSkillModel;
+	public void setUsuarioSkill(Set<UsuarioSkill> usuarioSkill) {
+		this.usuarioSkill = usuarioSkill;
 	}
-	
+
 }
