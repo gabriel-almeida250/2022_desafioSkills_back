@@ -1,7 +1,5 @@
 package com.neki.projetoNeki.Dto;
 
-import com.neki.projetoNeki.model.Skill;
-
 public class UsuarioSkillDTO {
 
     private Integer UsuarioSkillId;
