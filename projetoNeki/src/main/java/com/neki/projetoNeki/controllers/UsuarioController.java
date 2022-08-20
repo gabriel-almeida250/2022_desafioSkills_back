@@ -43,6 +43,11 @@ public class UsuarioController {
     public ResponseEntity<Optional<Usuario>> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(service.findById(id));
     }
+    
+    @GetMapping("usuarioAchado/{login}")
+    public ResponseEntity<Optional<Usuario>> findByLogin(@PathVariable String login) {
+        return ResponseEntity.ok(service.findByLogin(login));
+    }
 
     @PostMapping("/salvar")
     public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario) {

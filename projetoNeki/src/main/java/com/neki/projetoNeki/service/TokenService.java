@@ -19,13 +19,12 @@ public class TokenService {
 	
 	public String generateToken(Authentication authentication) {
 		Usuario usuario = (Usuario) authentication.getPrincipal();
-		
 		String tokenJwt = 
 				Jwts.builder().setIssuer("IRS")
 				.setIssuer("DesafioSkill")
 				.setSubject("Usuario")
 				.claim("id", usuario.getId())
-				.claim("name", usuario.getLogin())
+				.claim("login", usuario.getLogin())
 				.setIssuedAt(new Date())
 				.signWith(SignatureAlgorithm.HS256, jwtSecret)
 				.compact();
@@ -38,11 +37,11 @@ public class TokenService {
 				Jwts.builder().setIssuer("IRS")
 				.setIssuer("DesafioSkill")
 				.setSubject("Usuario")
-				.claim("id", usuario.getId())
-				.claim("name", usuario.getLogin())
+				.claim("login", usuario.getLogin())
 				.setIssuedAt(new Date())
 				.signWith(SignatureAlgorithm.HS256, jwtSecret)
 				.compact();
+		
 				
 		return tokenJwt;
 	}
@@ -60,7 +59,9 @@ public class TokenService {
 	public Integer extractIdFromToken(String token) {
 		Claims body = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
 		//Integer id = Integer.valueOf(body.getSubject());
+		System.out.println(body);
 		Integer id = Integer.valueOf(body.get("id").toString());
+		System.out.println(id);
 		return id;
 	}
 }

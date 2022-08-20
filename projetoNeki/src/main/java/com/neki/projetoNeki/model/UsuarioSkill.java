@@ -22,7 +22,7 @@ public class UsuarioSkill {
     private Integer UsuarioSkillId;
  
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id_usuario")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
  
     @ManyToOne
@@ -39,6 +39,14 @@ public class UsuarioSkill {
     private Date updatedAt;
 
 	
+	public Integer getUsuarioSkillId() {
+		return UsuarioSkillId;
+	}
+
+	public void setUsuarioSkillId(Integer usuarioSkillId) {
+		UsuarioSkillId = usuarioSkillId;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -78,6 +86,13 @@ public class UsuarioSkill {
 	public void setKnowledgeLevel(Integer knowledgeLevel) {
 		this.knowledgeLevel = knowledgeLevel;
 	}
+
+	@Override
+	public String toString() {
+		return "UsuarioSkill [UsuarioSkillId=" + UsuarioSkillId + ", usuario=" + usuario + ", skill=" + skill
+				+ ", knowledgeLevel=" + knowledgeLevel + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
 	 
+	
 	
 }

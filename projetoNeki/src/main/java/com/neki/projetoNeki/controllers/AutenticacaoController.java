@@ -46,7 +46,8 @@ public class AutenticacaoController {
 		authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 		
 		String token = tokenService.generateToken(authentication);
-		TokenDTO tokenDTO = new TokenDTO("Bearer", token, usuario.getLogin(), passwordEncoder.encode(usuario.getSenha()));
+		TokenDTO tokenDTO = new TokenDTO("Bearer", token, usuario.getLogin(), passwordEncoder.encode(usuario.getSenha()), usuario.getId());
+		System.out.println("Auiiiiiiiiiiiiii" + usuario.getId());
 		return new ResponseEntity<>(tokenDTO, HttpStatus.OK);
 	}
 	
@@ -56,7 +57,7 @@ public class AutenticacaoController {
 		Usuario novoUsuario = usuarioService.save(usuario);
 		
 		String token = tokenService.generateTokenWithUserData(novoUsuario);
-		TokenDTO tokenDTO = new TokenDTO("Bearer", token, usuario.getLogin(), passwordEncoder.encode(usuario.getSenha()));
+		TokenDTO tokenDTO = new TokenDTO("Bearer", token, usuario.getLogin(), passwordEncoder.encode(usuario.getSenha()), usuario.getId());
 		return new ResponseEntity<>(tokenDTO, HttpStatus.OK);
 	}
 	

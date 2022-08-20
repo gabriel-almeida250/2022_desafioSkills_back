@@ -33,7 +33,7 @@ public class Usuario implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
+	@Column(name = "id")
 	private Integer id;
 
 	@Column(name = "login", unique = true)
@@ -51,6 +51,10 @@ public class Usuario implements UserDetails {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLogin() {
@@ -119,4 +123,12 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", login=" + login + ", senha=" + senha + ", lastLoginDate="
+				+ lastLoginDate + ", usuarioSkill=" + usuarioSkill + "]";
+	}
+	
+	
 }

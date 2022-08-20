@@ -37,8 +37,7 @@ public class Skill {
 	@JsonIgnore
 	@OneToMany(
 	        mappedBy = "skill",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
+	        cascade = CascadeType.ALL
 	    )
 	    private Set<UsuarioSkill> usuarioSkillModel;
 	
@@ -90,5 +89,13 @@ public class Skill {
 	public void setUsuarioSkillModel(Set<UsuarioSkill> usuarioSkillModel) {
 		this.usuarioSkillModel = usuarioSkillModel;
 	}
+
+	@Override
+	public String toString() {
+		return "Skill [idSkill=" + idSkill + ", name=" + name + ", versao=" + versao + ", description=" + description
+				+ ", imageUrl=" + imageUrl + ", usuarioSkillModel=" + usuarioSkillModel + "]";
+	}
+	
+	
 	
 }
