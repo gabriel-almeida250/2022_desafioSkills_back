@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 
 @Entity(name = "UsuarioSkill")
 @Table(name = "usuario_skill")
@@ -29,6 +30,7 @@ public class UsuarioSkill {
     @JoinColumn(name = "skill_id", referencedColumnName = "id_skill")
     private Skill skill;
     
+    @Max(10)
     @Column(name = "knowledge_level")
     private Integer knowledgeLevel;
     
@@ -36,7 +38,7 @@ public class UsuarioSkill {
     private Date createdAt = new Date();
     
     @Column(name = "updated_at")
-    private Date updatedAt;
+    private Date updatedAt = new Date();
 
 	
 	public Integer getUsuarioSkillId() {

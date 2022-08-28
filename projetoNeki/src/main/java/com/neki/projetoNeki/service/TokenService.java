@@ -14,6 +14,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class TokenService {
+	
 	@Value("${jwt.secret}")
 	private String jwtSecret;
 	
@@ -58,10 +59,7 @@ public class TokenService {
 	
 	public Integer extractIdFromToken(String token) {
 		Claims body = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
-		//Integer id = Integer.valueOf(body.getSubject());
-		System.out.println(body);
 		Integer id = Integer.valueOf(body.get("id").toString());
-		System.out.println(id);
 		return id;
 	}
 }

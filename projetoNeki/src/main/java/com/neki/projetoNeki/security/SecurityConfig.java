@@ -24,6 +24,7 @@ import com.neki.projetoNeki.service.UserDetailsServiceImplService;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
 	@Autowired
 	UserDetailsServiceImplService userDetailsServiceImplService;
 	
@@ -37,13 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
 			.antMatchers("/autenticacao", 
-					"/autenticacao/registro", 
-					"/autenticacao/recuperar-senha",
-					"/autenticacao/cadastro",
+					"/autenticacao/registro",
 					"/swagger-ui/**",
-					"/v3/api-docs/**",
-					"/api/usuario/usuarioAchado/**",
-					"/api/skill/listarTodos"
+					"/v3/api-docs/**"
 			).permitAll()
 			.anyRequest().authenticated()
 			.and().csrf().disable()

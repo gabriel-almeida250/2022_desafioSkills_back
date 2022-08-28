@@ -1,7 +1,6 @@
 package com.neki.projetoNeki.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +18,8 @@ public class SkillService {
 		return skillRepository.findAll();
 	} 
 	
-	public Optional<Skill> findById(Integer id) {
-		return skillRepository.findById(id);
+	public Skill findById(Integer id) {
+		return skillRepository.findById(id).isPresent() ? skillRepository.findById(id).get() : null;
 	}
 	
 	public Skill save(Skill skill) {
@@ -29,5 +28,9 @@ public class SkillService {
 	
 	public Skill update(Skill skill) {
 		return skillRepository.save(skill);
+	}
+	
+	public void deleteById(Integer id) {
+		skillRepository.deleteById(id);
 	}
 }
